@@ -15,18 +15,10 @@ class CreateEnterpriseTable extends Migration
     {
         Schema::create('enterprise', function (Blueprint $table) {
             $table->increments('id');
+            $table->integer('idUser');
+            $table->foreign('idUser')->references('id')->on('users')->unique();
             $table->string('companyName')->unique();
             $table->string('shortName');
-            $table->string('country');
-            $table->string('state');
-            $table->string('city');
-            $table->string('address');
-            $table->string('phone');
-            $table->string('secondPhone');
-            $table->string('local');
-            $table->string('secondlocal');
-            $table->string('email');
-            $table->string('rif');
             $table->timestamps();
         });
     }

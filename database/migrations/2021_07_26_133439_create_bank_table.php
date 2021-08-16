@@ -15,9 +15,11 @@ class CreateBankTable extends Migration
     {
         Schema::create('bank', function (Blueprint $table) {
             $table->increments('id');
+            $table->integer('idUser');
+            $table->foreign('idUser')->references('id')->on('users')->unique();
             $table->integer('idBank');
             $table->foreign('idBank')->references('id')->on('entitySubClass');
-            $table->string('bankAccount');
+            $table->string('bankAccount')->unique();
             $table->timestamps();
         });
     }

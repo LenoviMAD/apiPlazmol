@@ -14,6 +14,7 @@ class CreateEntityClassTable extends Migration
     public function up()
     {
         Schema::create('public.entityClass', function (Blueprint $table) {
+            $table->primary('id');
             $table->increments('id');
             $table->string('description')->unique();
             $table->timestamps();

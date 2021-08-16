@@ -17,14 +17,11 @@ class CreatePersonTable extends Migration
             $table->increments('id');
             $table->integer('idUser');
             $table->foreign('idUser')->references('id')->on('users')->unique();
-            $table->string('primerNombre');
-            $table->string('segundoNombre')->nullable();;
-            $table->string('primerApellido');
-            $table->string('segundoApellido')->nullable();;
-            $table->string('rif');
-            $table->date('fechaNacimiento')->nullable();
-            $table->string('celular');
-            $table->string('telefono');
+            $table->string('name');
+            $table->string('secondName')->nullable();;
+            $table->string('surname');
+            $table->string('secondSurname')->nullable();;
+            $table->date('birthday')->nullable();
             $table->timestamps();
         });
     }

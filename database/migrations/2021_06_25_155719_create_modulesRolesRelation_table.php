@@ -16,9 +16,9 @@ class CreateModulesRolesRelationTable extends Migration
         Schema::create('modulesRolesRelation', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('idRoles');
-            $table->foreign('idRoles')->references('id')->on('roles')->unique();
+            $table->foreign('idRoles')->references('id')->on('roles');
             $table->integer('idModules');
-            $table->foreign('idModules')->references('id')->on('modules')->unique();
+            $table->foreign('idModules')->references('id')->on('modules');
             $table->timestamps();
         });
     }

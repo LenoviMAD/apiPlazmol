@@ -14,6 +14,7 @@ class CreateEntitySubClassTable extends Migration
     public function up()
     {
         Schema::create('entitySubClass', function (Blueprint $table) {
+            $table->primary('id');
             $table->increments('id');
             $table->integer('idEntityClass');
             $table->foreign('idEntityClass')->references('id')->on('entityClass');
