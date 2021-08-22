@@ -8,7 +8,8 @@ use Illuminate\Database\Eloquent\Model;
 class Municipality extends Model
 {
     use HasFactory;
-    protected $table = 'city';
+
+    protected $table = 'municipality';
     /**
      * The attributes that are mass assignable.
      *

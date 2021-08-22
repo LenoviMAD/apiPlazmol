@@ -12,12 +12,16 @@ class StateController extends BaseController
     public function index(int $id)
     {
 
-        $state = DB::table('state')->where('idCountry', $id)->select('id', 'state')->get();
+        try {
+            $state = DB::table('state')->where('idCountry', $id)->select('id', 'state')->get();
 
-        if ($state != null) {
-            return $this->sendResponsee('afirmative', 'Estados', 100, $state);
-        } else {
-            return $this->sendResponse('negative', 'Parroquia no encontrado', 401, $state);
+            if (sizeof($state) != 0) {
+                return $this->sendResponse('afirmative', 'Estados', 100, $state);
+            } else {
+                return $this->sendResponse('warning', 'El Estado no es correcto', 200, []);
+            }
+        } catch (\Throwable $th) {
+            return $this->sendResponse('negative', 'Estados', 400, $th);
         }
     }
 }

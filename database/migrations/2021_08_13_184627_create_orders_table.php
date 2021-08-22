@@ -19,12 +19,12 @@ class CreateOrdersTable extends Migration
             $table->foreign('idUser')->references('id')->on('users');
             $table->integer('idSeller');
             $table->foreign('idSeller')->references('id')->on('users');
-            $table->primary('numberOrder');
             $table->string('numberOrder')->unique();
             $table->longText('description');
             $table->date('dateDispatch');
             $table->decimal('amount', 15, 4);
-
+            $table->integer('idStatus');
+            $table->foreign('idStatus')->references('id')->on('entitySubClass');
             $table->timestamps();
         });
     }

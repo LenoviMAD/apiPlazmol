@@ -32,17 +32,9 @@ class EnterpriseController extends BaseController
 
 
             $validator = Validator::make($request->all(), [
+                'idUser' => 'required',
                 'companyName' => 'required',
                 'shortName' => 'required',
-                'country' => 'required',
-                'state' => 'required',
-                'city' => 'required',
-                'address' => 'required',
-                'phone' => 'required',
-                'local' => 'required',
-                'email' => 'required',
-                'rif' => 'required',
-                // 'confirm_password' => 'required|same:password',
             ]);
             Enterprise::create($input);
         } else {

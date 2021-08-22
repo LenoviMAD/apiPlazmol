@@ -14,7 +14,6 @@ class CreateProductTable extends Migration
     public function up()
     {
         Schema::create('product', function (Blueprint $table) {
-            $table->primary('id');
             $table->increments('id');
             $table->integer('idCathegory');
             $table->foreign('idCathegory')->references('id')->on('entitySubClass');

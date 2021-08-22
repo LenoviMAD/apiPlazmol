@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateEntitySubClassTable extends Migration
+class CreateRolesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,12 +13,8 @@ class CreateEntitySubClassTable extends Migration
      */
     public function up()
     {
-        Schema::create('entitySubClass', function (Blueprint $table) {
-            $table->primary('id');
-            $table->increments('id');
-            $table->integer('idEntityClass');
-            $table->foreign('idEntityClass')->references('id')->on('entityClass');
-            $table->string('code');
+        Schema::create('roles', function (Blueprint $table) {
+            $table->increments('id')->unique();
             $table->string('description');
             $table->timestamps();
         });
@@ -31,6 +27,6 @@ class CreateEntitySubClassTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('entitySubClass');
+        Schema::dropIfExists('roles');
     }
 }

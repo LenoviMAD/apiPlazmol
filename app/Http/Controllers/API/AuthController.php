@@ -21,7 +21,11 @@ class AuthController extends BaseController
             $success['token'] =  $authUser->createToken('MyAuthApp')->plainTextToken;
             $success['idRoles'] =  $authUser->idRoles;
 
-            return $this->sendResponse('positive', 'Winwardium Leviosa', 100, $success);
+            if ($authUser->idStatus == 53) {
+                return $this->sendResponse('positive', 'Winwardium Leviosa', 100, $success);
+            } else {
+                return $this->sendResponse('warning', 'El email esta inactivo', 200, []);
+            }
         } else {
             return $this->sendResponse('negative', 'El email o contraseña es incorrecto', 401, []);
         }
@@ -34,7 +38,7 @@ class AuthController extends BaseController
         $validator = Validator::make($request->all(), [
             'email' => 'required|email',
             'password' => 'required',
-            'c_password' => 'required|same:password',
+            'cpassword' => 'required|same:password',
 
         ]);
 
@@ -53,12 +57,13 @@ class AuthController extends BaseController
 
         //Encripta la contrasena
         $input['password'] = bcrypt($input['password']);
-
+        $input = Arr::add($input, 'idStatus', 53);
         $user = User::create($input);
         $success['token'] =  $user->createToken('MyAuthApp')->plainTextToken;
         $success['idRoles'] =  $user->idRoles;
         $success['id'] =  $user->id;
-
+        $success['idStatus'] =  53;
+        //status 53 = activo, 54 = inactivo, 55 = pendiente, 56 = procesado
 
         return $this->sendResponse('positive', 'Usuario creado satisfactoriamente.', 100, $success);
     }

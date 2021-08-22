@@ -8,6 +8,7 @@ use Illuminate\Support\Arr;
 use App\Models\EntitySubClass;
 use App\Http\Controllers\API\BaseController as BaseController;
 use Illuminate\Support\Facades\DB;
+use Validator;
 
 class EntitySubClassController extends BaseController
 {
@@ -18,7 +19,7 @@ class EntitySubClassController extends BaseController
         $title = DB::table('entityClass')->where('id', $id)->select('description')->first();
 
 
-        return $this->sendResponse('afirmative', $title['description'], 100, $request);
+        return $this->sendResponse('afirmative', $title->description, 100, $request);
         //Esta función nos devolvera todas las tareas que tenemos en nuestra BD
     }
 
@@ -85,6 +86,15 @@ class EntitySubClassController extends BaseController
         //Esta función nos devolvera todas las tareas que tenemos en nuestra BD
     }
 
+    public function getStatus()
+    {
+
+        $discounts = DB::table('entitySubClass')->where('idEntityClass', 8)->select('code', 'description')->get();
+
+        return $this->sendResponse('afirmative', 'Estatus', 100, $discounts);
+        //Esta función nos devolvera todas las tareas que tenemos en nuestra BD
+    }
+
     /**
      * Store a newly created resource in storage.
      *
@@ -103,7 +113,8 @@ class EntitySubClassController extends BaseController
 
             if ($dataUser != null) {
                 $validator = Validator::make($request->all(), [
-                    'description' => 'required'
+                    'description' => 'required',
+                    'code' => 'required'
                     // 'confirm_password' => 'required|same:password',
                 ]);
                 EntitySubClass::create($input);

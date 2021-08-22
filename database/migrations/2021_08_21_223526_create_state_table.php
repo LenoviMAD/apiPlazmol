@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateIdentityTable extends Migration
+class CreateStateTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,11 @@ class CreateIdentityTable extends Migration
      */
     public function up()
     {
-        Schema::create('identity', function (Blueprint $table) {
+        Schema::create('state', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('idUser')->unique();
-            $table->foreign('idUser')->references('id')->on('users');
-            $table->string('rif')->unique();
+            $table->integer('idCountry');
+            $table->foreign('idCountry')->references('id')->on('country');
+            $table->string('state');
             $table->timestamps();
         });
     }
@@ -29,6 +29,6 @@ class CreateIdentityTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('identity');
+        Schema::dropIfExists('state');
     }
 }

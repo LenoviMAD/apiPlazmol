@@ -27,34 +27,29 @@ class PersonController extends BaseController
         //Asignamos a una variable el valor del json para manipularlo facilmente
         $input = $request->all();
 
-        $exists = Arr::exists($input, 'username');
+        $exists = Arr::exists($input, 'email');
         if ($exists) {
 
             $dataUser = DB::table('users')->where('email', $input['email'])->select('id', 'idRoles')->first();
-            $input = Arr::add($input, 'idUsers', $dataUser['id']);
+            $input = Arr::add($input, 'idUser', $dataUser->id);
             //Verificamos que el rif sea correcto
-            if (!rifValidation::validacion($input['rif'])) {
-                return $this->sendError('warning', 'El Rif es incorrecto', 400, $input['rif']);
-            }
+            // if (!rifValidation::validacion($input['rif'])) {
+            //     return $this->sendError('warning', 'El Rif es incorrecto', 400, $input['rif']);
+            // }
 
             $validator = Validator::make($request->all(), [
-                'primerNombre' => 'required',
-                'primerApellido' => 'required',
-                'rif' => 'required',
-                'celular' => 'required',
-                'telefono' => 'required',
-                'email' => 'required',
-                // 'confirm_password' => 'required|same:password',
+                'name' => 'required',
+                'surname' => 'required',
+                'birthday' => 'required',
             ]);
 
             if ($validator->fails()) {
                 return $this->sendResponse('warning', 'Error de validación', 200, $validator->errors());
             }
-
             //Guardamos en la tabla person
             $person = Person::create($input);
         } else {
-            return $this->sendResponse('warning', 'Indique el nombre de usuario', 401, $validator->errors());
+            return $this->sendResponse('warning', 'Indique el nombre de usuario', 401, $exists);
         }
 
         return $this->sendResponse('positive', 'Usuario registrado correctamente', 100, []);

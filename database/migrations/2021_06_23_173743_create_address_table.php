@@ -14,18 +14,17 @@ class CreateAddressTable extends Migration
     public function up()
     {
         Schema::create('address', function (Blueprint $table) {
-            $table->primary('id');
             $table->increments('id');
-            $table->integer('idUser');
-            $table->foreign('idUser')->references('id')->on('users')->unique();
+            $table->integer('idUser')->unique();
+            $table->foreign('idUser')->references('id')->on('users');
             $table->string('description');
-            $table->string('idState');
+            $table->integer('idState');
             $table->foreign('idState')->references('id')->on('entitySubClass');
-            $table->string('idCity');
+            $table->integer('idCity');
             $table->foreign('idCity')->references('id')->on('entitySubClass');
-            $table->string('idCountry');
+            $table->integer('idCountry');
             $table->foreign('idCountry')->references('id')->on('entitySubClass');
-            $table->string('idParish');
+            $table->integer('idParish');
             $table->foreign('idParish')->references('id')->on('entitySubClass');
             $table->timestamps();
         });

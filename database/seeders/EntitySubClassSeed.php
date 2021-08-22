@@ -409,6 +409,35 @@ class EntitySubClassSeed extends Seeder
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s')
             ],
+            //Estatus
+            [
+                'idEntityClass' => 8,
+                'code' => '01',
+                'description' => "Activo",
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'idEntityClass' => 8,
+                'code' => '02',
+                'description' => "Inactivo",
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'idEntityClass' => 8,
+                'code' => '03',
+                'description' => "Pendiente",
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'idEntityClass' => 8,
+                'code' => '04',
+                'description' => "Procesado",
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
         ]);
     }
 }

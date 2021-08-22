@@ -16,11 +16,12 @@ class Address extends Model
      * @var array
      */
     protected $fillable = [
-        'idUsers',
+        'idUser',
         'description',
-        'state',
-        'city',
-        'zone'
+        'idState',
+        'idCity',
+        'idCountry',
+        'idParish'
     ];
 
     /**

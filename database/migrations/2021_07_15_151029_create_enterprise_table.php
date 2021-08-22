@@ -15,8 +15,8 @@ class CreateEnterpriseTable extends Migration
     {
         Schema::create('enterprise', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('idUser');
-            $table->foreign('idUser')->references('id')->on('users')->unique();
+            $table->integer('idUser')->unique();
+            $table->foreign('idUser')->references('id')->on('users');
             $table->string('companyName')->unique();
             $table->string('shortName');
             $table->timestamps();

@@ -14,10 +14,15 @@ class MunicipalityController extends BaseController
         try {
             $municipality = DB::table('municipality')->where('idState', $id)->select('id', 'municipality')->get();
 
-            return $this->sendResponse('afirmative', 'Ciudades', 100, $municipality);
+            if (sizeof($municipality) != 0) {
+                return $this->sendResponse('afirmative', 'Municipio', 100, $municipality);
+            } else {
+                return $this->sendResponse('warning', 'El municipio no es correcta', 200, []);
+            }
+
             //Esta función nos devolvera todas las tareas que tenemos en nuestra BD
         } catch (\Throwable $th) {
-            return $this->sendResponse('negative', 'Ciudades', 400, $th);
+            return $this->sendResponse('negative', 'Municipio', 400, $th);
         }
     }
 }

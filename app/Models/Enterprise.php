@@ -16,19 +16,9 @@ class Enterprise extends Model
      * @var array
      */
     protected $fillable = [
-        'idUsers',
+        'idUser',
         'companyName',
         'shortName',
-        'country',
-        'state',
-        'city',
-        'address',
-        'phone',
-        'secondPhone',
-        'local',
-        'secondlocal',
-        'email',
-        'rif',
     ];
 
     /**

@@ -16,16 +16,12 @@ class Person extends Model
      * @var array
      */
     protected $fillable = [
-        'idUsers',
-        'primerNombre',
-        'segundoNombre',
-        'primerApellido',
-        'segundoApellido',
-        'rif',
-        'fechaNacimiento',
-        'celular',
-        'telefono',
-        'email',
+        'idUser',
+        'name',
+        'secondName',
+        'surname',
+        'secondSurname',
+        'birthday',
     ];
 
     /**

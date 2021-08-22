@@ -14,7 +14,6 @@ class CreateUsersTable extends Migration
     public function up()
     {
         Schema::create('users', function (Blueprint $table) {
-            $table->primary('id');
             $table->increments('id');
             $table->integer('idRoles');
             $table->foreign('idRoles')->references('id')->on('roles');

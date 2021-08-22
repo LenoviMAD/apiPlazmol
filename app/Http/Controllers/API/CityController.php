@@ -13,10 +13,16 @@ class CityController extends BaseController
 {
     public function index(int $id)
     {
+        try {
+            $City = DB::table('city')->where('idState', $id)->select('id', 'city')->get();
 
-        $City = DB::table('city')->where('idState', $id)->select('id', 'city')->get();
-
-        return $this->sendResponse('afirmative', 'Ciudades', 100, $City);
-        //Esta función nos devolvera todas las tareas que tenemos en nuestra BD
+            if (sizeof($City) != 0) {
+                return $this->sendResponse('afirmative', 'Ciudades', 100, $City);
+            } else {
+                return $this->sendResponse('warning', 'La ciudad no es correcta', 200, []);
+            }
+        } catch (\Throwable $th) {
+            return $this->sendResponse('negative', 'Ciudades', 400, $th);
+        }
     }
 }

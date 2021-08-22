@@ -8,4 +8,31 @@ use Illuminate\Database\Eloquent\Model;
 class Parish extends Model
 {
     use HasFactory;
+
+    protected $table = 'parish';
+    /**
+     * The attributes that are mass assignable.
+     *
+     * @var array
+     */
+    protected $fillable = [
+        'idMunicipality',
+        'parish',
+    ];
+
+    /**
+     * The attributes that should be hidden for arrays.
+     *
+     * @var array
+     */
+    protected $hidden = [
+        //
+    ];
+
+    /**
+     * The attributes that should be cast to native types.
+     *
+     * @var array
+     */
+    protected $casts = [];
 }

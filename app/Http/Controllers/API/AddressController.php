@@ -11,7 +11,7 @@ use Illuminate\Support\Facades\DB;
 use Validator;
 use App\Models\User;
 use App\Models\Person;
-use App\Models\Enterprise;
+use App\Models\Address;
 
 class AddressController extends BaseController
 {
@@ -29,24 +29,26 @@ class AddressController extends BaseController
         $exists = Arr::exists($input, 'email');
         if ($exists) {
             $dataUser = DB::table('users')->where('email', $input['email'])->select('id', 'idRoles')->first();
-            $input = Arr::add($input, 'idUsers', $dataUser['id']);
 
             if ($dataUser != null) {
+                $input = Arr::add($input, 'idUser', $dataUser->id);
 
                 $validator = Validator::make($request->all(), [
                     'description' => 'required',
-                    'state' => 'required',
-                    'zone' => 'required',
+                    'idState' => 'required',
+                    'idCity' => 'required',
+                    'idCountry' => 'required',
+                    'idParish' => 'required',
                     // 'confirm_password' => 'required|same:password',
                 ]);
-                Enterprise::create($input);
+                Address::create($input);
             } else {
                 return $this->sendResponse('warning', 'Usuario no encontrado', 401, $dataUser);
             }
         } else {
-            return $this->sendResponse('warning', 'Indique el nombre de usuario', 401, $validator->errors());
+            return $this->sendResponse('warning', 'Indique el email', 401, $validator->errors());
         }
 
-        return $this->sendResponse('positive', 'Empresa registrada correctamente', 100, []);
+        return $this->sendResponse('positive', 'Dirección registrada correctamente', 100, []);
     }
 }

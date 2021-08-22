@@ -14,7 +14,6 @@ class CreateOrderDetailsTable extends Migration
     public function up()
     {
         Schema::create('orderDetails', function (Blueprint $table) {
-            $table->primary('id');
             $table->increments('id');
             $table->integer('idOrders');
             $table->foreign('idOrders')->references('id')->on('orders');
@@ -22,7 +21,7 @@ class CreateOrderDetailsTable extends Migration
             $table->foreign('idProduct')->references('id')->on('product');
             $table->integer('idPresentation');
             $table->foreign('idPresentation')->references('id')->on('entitySubClass');
-            $table->int('lot');
+            $table->integer('lot');
             $table->decimal('amount', 15, 4);
 
             $table->timestamps();

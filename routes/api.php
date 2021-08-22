@@ -30,6 +30,7 @@ Route::post('register', [AuthController::class, 'signup']);
 Route::post('enterprise', [EnterpriseController::class, 'store']);
 Route::post('person', [PersonController::class, 'store']);
 Route::post('address', [AddressController::class, 'store']);
+Route::post('cathegory', [EntitySubClassController::class, 'addCathegory']);
 Route::get('country', [CountryController::class, 'index']);
 Route::get('city/{city}', [CityController::class, 'index']);
 Route::get('municipality/{municipality}', [MunicipalityController::class, 'index']);
@@ -43,7 +44,7 @@ Route::get('getPresentation', [EntitySubClassController::class, 'getPresentation
 Route::get('getCurrency', [EntitySubClassController::class, 'getCurrency']);
 Route::get('getTax', [EntitySubClassController::class, 'getTax']);
 Route::get('getDiscounts', [EntitySubClassController::class, 'getDiscounts']);
-Route::post('cathegory', [EntitySubClassController::class, 'addCathegory']);
+Route::get('getStatus', [EntitySubClassController::class, 'getStatus']);
 
 // Route::middleware('auth:sanctum')->group( function () {
 //     //Route::resource('blogs', BlogController::class);
